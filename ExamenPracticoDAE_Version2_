@@ -1,0 +1,174 @@
+﻿using System;
+class Program
+{
+    //Menu Principal
+    public static void Main()
+    {
+        Program programa = new Program();
+        while (true)
+        {
+            Console.WriteLine("Menu:");
+            Console.WriteLine("[1] Sistema Musica");
+            Console.WriteLine("[2] Sistema Alumnos");
+            Console.WriteLine("[3] Salir\n");
+
+            int opcion = int.Parse(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    Console.Clear();//limpiando pantalla
+                    programa.SistemaMusica();
+                    break;
+                case 2:
+                    Console.Clear();
+                    programa.SistemaAlumnos();
+                    break;
+                case 3:
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Ingrese opcion correcta");
+                    break;
+            }
+        }
+    }
+
+    class Musica
+    //Declarando variables de mi clase Musica
+    {
+        public string NombreArtista;
+        public string NombreCancion;
+        public int DuracionCancion;
+        public int PesoKB;
+    }
+
+
+    void SistemaMusica()
+
+    {
+        Musica[] track = new Musica[5];
+        int ContadorMusica = 0;
+        while (true)
+        {
+            Console.WriteLine("Menu sistema control de musica:");
+            Console.WriteLine("[1] Agregar Cancion");
+            Console.WriteLine("[2] Mostrar Canciones");
+            Console.WriteLine("[3] Volver");
+            Console.WriteLine("\n");
+
+            int opcion = int.Parse(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    //Solicitud de informacion 
+                    track[ContadorMusica] = new Musica();
+
+                    Console.Write("Ingrese el nombre del artista/grupo: ");
+                    track[ContadorMusica].NombreArtista = Console.ReadLine();
+
+                    Console.Write("Ingrese nombre de la cancion: ");
+                    track[ContadorMusica].NombreCancion = Console.ReadLine();
+
+                    Console.Write("Ingrese la duracion en segundos: ");
+                    track[ContadorMusica].DuracionCancion = int.Parse(Console.ReadLine());
+
+                    Console.Write("Ingrese el tamaño en KB: ");
+                    track[ContadorMusica].PesoKB = int.Parse(Console.ReadLine());
+
+                    ContadorMusica++;
+                    Console.Clear(); //limpiando pantalla
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Listado:");
+                    Console.WriteLine("Nombre Artista | Nombre Cancion | Duracion | Tamaño en KB");
+                    for (int i = 0; i < ContadorMusica; i++)
+                    {
+                        Console.WriteLine($"{track[i].NombreArtista.PadRight(5)} | {track[i].NombreCancion.PadRight(5)} | {track[i].DuracionCancion.ToString().PadRight(5)} | {track[i].PesoKB}");
+                        //imprimiendo en pantalla con el met padRight() para dar formato a texto
+                    }
+                    Console.WriteLine("\n");
+                    break;
+                case 3:
+                    Console.Clear();//limpiando pantalla
+                    return;
+                default:
+                    Console.WriteLine("Ingrese opcion correcta");
+                    break;
+            }
+        }
+    }
+
+    class Escolar
+    //Declarando variables de mi clase Escolar
+    {
+        public string CodAlumno;
+        public string Nombre;
+        public string FechaNac;
+        public string Grado;
+        public int ARegistro;
+    }
+
+    void SistemaAlumnos()
+    {
+        Escolar[] estudiantes = new Escolar[5];
+        int ContadorAlumno = 0;
+        while (true)
+        {
+            Console.WriteLine("Menu Sistema control de alumnos:");
+            Console.WriteLine("[1] Agregar Alumno");
+            Console.WriteLine("[2] Mostrar Alumnos");
+            Console.WriteLine("[3] Volver");
+            Console.WriteLine("\n");
+
+
+            int opcion = int.Parse(Console.ReadLine());
+
+            switch (opcion)
+            {
+                case 1:
+                    //Solicitud de informacion 
+                    estudiantes[ContadorAlumno] = new Escolar();
+
+                    Console.Write("Ingrese codigo de estudiante: ");
+                    estudiantes[ContadorAlumno].CodAlumno = Console.ReadLine();
+
+                    Console.Write("Ingrese Nombre Completo de estudante: ");
+                    estudiantes[ContadorAlumno].Nombre = Console.ReadLine();
+
+                    Console.Write("Ingrese fecha de nacimiento (DD/MM/AAAA): ");
+                    estudiantes[ContadorAlumno].FechaNac = Console.ReadLine();
+
+                    Console.Write("Ingreso año de curso: ");
+                    estudiantes[ContadorAlumno].Grado = Console.ReadLine();
+
+                    Console.Write("Ingrese año de Registro: ");
+                    estudiantes[ContadorAlumno].ARegistro = int.Parse(Console.ReadLine());
+
+                    ContadorAlumno++;
+                    Console.Clear();//limpiando pantalla
+                    break;
+                case 2:
+                    Console.Clear();
+                    Console.WriteLine("Listado:");
+                    Console.WriteLine("Numero de Codigo | Nombre | Fecha de Nacimiento | Grado | Año de Registro");
+
+                    for (int i = 0; i < ContadorAlumno; i++)
+                    {
+                        Console.WriteLine($"{estudiantes[i].CodAlumno.PadRight(5)} | {estudiantes[i].Nombre.PadRight(5)} | {estudiantes[i].FechaNac.PadRight(5)} | {estudiantes[i].Grado} | {estudiantes[i].ARegistro}");
+                    } //imprimiendo en pantalla con el met padRight() para dar formato a texto
+                    Console.WriteLine("\n");
+                    break;
+                case 3:
+                    Console.Clear();//limpiando pantalla
+                    return;
+                default:
+                    Console.WriteLine("Ingrese Opcion Correcta");
+                    break;
+            }
+        }
+    }
+}
+
